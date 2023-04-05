@@ -1,5 +1,7 @@
-import 'package:codebase/presentation/resources/routes.dart';
+import 'package:codebase/presentation/resources/route_utils.dart';
+import 'package:codebase/presentation/resources/theme_utils.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class App extends StatefulWidget {
   const App._internal();
@@ -17,10 +19,18 @@ class App extends StatefulWidget {
 class _AppState extends State<App> {
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(
-      debugShowCheckedModeBanner: false,
-      onGenerateRoute: RouteGenerator.getRoute,
-      initialRoute: Routes.splashRoute,
+    return ScreenUtilInit(
+      designSize: const Size(360, 690),
+      minTextAdapt: true,
+      splitScreenMode: true,
+      builder: (context, child) {
+        return MaterialApp(
+          debugShowCheckedModeBanner: false,
+          theme: getApplicationTheme(),
+          onGenerateRoute: RouteGenerator.getRoute,
+          initialRoute: Routes.splashRoute,
+        );
+      },
     );
   }
 }
